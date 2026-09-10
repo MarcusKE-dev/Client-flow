@@ -1,0 +1,29 @@
+{
+  "name": "ClientFlow - Personal Customer CRM",
+  "short_name": "ClientFlow",
+  "description": "Personal work CRM and customer workflow application for customer-facing professionals",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F7FA",
+  "theme_color": "#1D70F5",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Today's Work",
+      "url": "/?tab=today",
+      "description": "View today's appointments and follow-ups"
+    },
+    {
+      "name": "Add Customer",
+      "url": "/?action=new-customer",
+      "description": "Quick add a new customer"
+    }
+  ]
+}

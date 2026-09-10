@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ClientFlow - Personal Customer CRM</title>
+    <meta name="description" content="Personal work CRM and customer workflow application for customer-facing professionals. Manage meetings, follow-ups, opportunities, and interactions offline-first." />
+    <meta property="og:title" content="ClientFlow - Personal Customer CRM" />
+    <meta property="og:description" content="Personal work CRM and customer workflow application for customer-facing professionals. Manage meetings, follow-ups, opportunities, and interactions offline-first." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1D70F5" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+  </head>
+  <body class="bg-[#F5F7FA] text-[#111827] antialiased selection:bg-[#1D70F5]/20 selection:text-[#1B2CC1]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(reg => {
+            console.log('ClientFlow SW registered:', reg.scope);
+          }).catch(err => {
+            console.log('SW registration failed:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
+

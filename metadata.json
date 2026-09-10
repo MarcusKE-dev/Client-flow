@@ -1,0 +1,6 @@
+{
+  "name": "ClientFlow - Personal Customer CRM",
+  "description": "Personal work CRM and customer workflow application for customer-facing professionals. Manage meetings, follow-ups, opportunities, and interactions offline-first.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
