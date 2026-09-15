@@ -6,7 +6,7 @@ import {
   Briefcase, 
   Clock, 
   MoreHorizontal, 
-  Sparkles,
+  Activity,
   RefreshCw,
   Wifi,
   WifiOff,
@@ -33,7 +33,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onOpe
     { id: 'calendar' as NavTab, label: 'Calendar', icon: Calendar },
     { id: 'followups' as NavTab, label: 'Follow-ups', icon: CheckSquare },
     { id: 'opportunities' as NavTab, label: 'Opportunities', icon: Briefcase },
-    { id: 'activity' as NavTab, label: 'Activity', icon: Sparkles },
+    { id: 'activity' as NavTab, label: 'Activity', icon: Activity },
     { id: 'more' as NavTab, label: 'More', icon: MoreHorizontal },
   ];
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Sparkles, 
+  Activity,
   Phone, 
   Calendar, 
   MessageCircle, 
@@ -64,9 +64,9 @@ export const ActivityView: React.FC<ActivityViewProps> = ({
   });
 
   return (
-    <div className="flex-1 overflow-y-auto pb-24 md:pb-12 bg-[#F5F7FA]">
+    <div className="flex-1 overflow-y-auto pb-24 md:pb-12 bg-[#F5F7FA] dark:bg-[#0F172A] dark:text-slate-100">
       {/* Top Header */}
-      <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-6 py-4">
+      <div className="bg-white dark:bg-[#111827] border-b border-[#E5E7EB] dark:border-slate-800 px-4 sm:px-6 py-4">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">
@@ -136,7 +136,7 @@ export const ActivityView: React.FC<ActivityViewProps> = ({
                     {int.type === 'whatsapp' && <MessageCircle className="w-4 h-4 text-emerald-600" />}
                     {int.type === 'email' && <Mail className="w-4 h-4 text-[#1D70F5]" />}
                     {int.type === 'note' && <FileText className="w-4 h-4 text-amber-600" />}
-                    {int.type === 'other' && <Sparkles className="w-4 h-4 text-[#6B7280]" />}
+                    {int.type === 'other' && <Activity className="w-4 h-4 text-[#6B7280]" />}
                   </div>
 
                   <div className="min-w-0 flex-1">

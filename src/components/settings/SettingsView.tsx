@@ -529,9 +529,9 @@ export const SettingsView: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto pb-24 md:pb-12 bg-[#F5F7FA]">
+    <div className="flex-1 overflow-y-auto pb-24 md:pb-12 bg-[#F5F7FA] dark:bg-[#0F172A] dark:text-slate-100">
       {/* Top Header */}
-      <div className="bg-white border-b border-[#E5E7EB] px-4 sm:px-6 py-4">
+      <div className="bg-white dark:bg-[#111827] border-b border-[#E5E7EB] dark:border-slate-800 px-4 sm:px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-[#111827] tracking-tight">

@@ -13,13 +13,14 @@ import { CalendarView } from './components/calendar/CalendarView';
 import { OpportunitiesView } from './components/opportunities/OpportunitiesView';
 import { ActivityView } from './components/activity/ActivityView';
 import { SettingsView } from './components/settings/SettingsView';
-import { QuickCaptureModal } from './components/common/QuickCaptureModal';
+import { QuickCaptureModal, type ActionTab } from './components/common/QuickCaptureModal';
 import { WifiOff } from 'lucide-react';
 
 const AppContent: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavTab>('today');
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
   const [isQuickCaptureOpen, setIsQuickCaptureOpen] = useState(false);
+  const [quickCaptureInitialTab, setQuickCaptureInitialTab] = useState<ActionTab>('customer');
   const { isOnline, pendingCount } = useSync();
 
   // Keyboard shortcut: 'n' or '+' for quick action
@@ -51,13 +52,19 @@ const AppContent: React.FC = () => {
     setCurrentTab(tab);
   };
 
+  const openQuickCapture = (initialTab: ActionTab = 'customer') => {
+    setQuickCaptureInitialTab(initialTab);
+    setIsQuickCaptureOpen(true);
+  };
+
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#F5F7FA] dark:bg-[#0F172A] font-sans antialiased text-[#111827] dark:text-[#F8FAFC]">
       {/* Desktop Persistent Sidebar */}
       <Sidebar
         currentTab={currentTab}
         onSelectTab={handleSelectTab}
-        onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+        onOpenQuickCapture={openQuickCapture}
       />
 
       {/* Main App Container */}
@@ -80,7 +87,7 @@ const AppContent: React.FC = () => {
         {/* Universal TopBar with Instant Global Search */}
         <TopBar
           onSelectCustomer={handleSelectCustomer}
-          onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+          onOpenQuickCapture={openQuickCapture}
           onSelectTab={handleSelectTab}
         />
 
@@ -90,13 +97,14 @@ const AppContent: React.FC = () => {
             <CustomerProfileView
               customerId={selectedCustomerId}
               onBack={handleBackFromCustomer}
+              onOpenQuickCapture={openQuickCapture}
             />
           ) : (
             <>
               {currentTab === 'today' && (
                 <TodayView
                   onSelectCustomer={handleSelectCustomer}
-                  onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+                  onOpenQuickCapture={openQuickCapture}
                   onOpenCalendar={() => setCurrentTab('calendar')}
                   onOpenFollowUps={() => setCurrentTab('followups')}
                 />
@@ -105,35 +113,35 @@ const AppContent: React.FC = () => {
               {currentTab === 'customers' && (
                 <CustomerListView
                   onSelectCustomer={handleSelectCustomer}
-                  onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+                  onOpenQuickCapture={openQuickCapture}
                 />
               )}
 
               {currentTab === 'calendar' && (
                 <CalendarView
                   onSelectCustomer={handleSelectCustomer}
-                  onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+                  onOpenQuickCapture={openQuickCapture}
                 />
               )}
 
               {currentTab === 'followups' && (
                 <FollowUpsView
                   onSelectCustomer={handleSelectCustomer}
-                  onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+                  onOpenQuickCapture={openQuickCapture}
                 />
               )}
 
               {currentTab === 'opportunities' && (
                 <OpportunitiesView
                   onSelectCustomer={handleSelectCustomer}
-                  onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+                  onOpenQuickCapture={openQuickCapture}
                 />
               )}
 
               {currentTab === 'activity' && (
                 <ActivityView
                   onSelectCustomer={handleSelectCustomer}
-                  onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+                  onOpenQuickCapture={openQuickCapture}
                 />
               )}
 
@@ -149,12 +157,13 @@ const AppContent: React.FC = () => {
       <BottomNav
         currentTab={currentTab}
         onSelectTab={handleSelectTab}
-        onOpenQuickCapture={() => setIsQuickCaptureOpen(true)}
+        onOpenQuickCapture={openQuickCapture}
       />
 
       {/* Global Quick Action Modal */}
       {isQuickCaptureOpen && (
         <QuickCaptureModal
+          initialTab={quickCaptureInitialTab}
           onClose={() => setIsQuickCaptureOpen(false)}
           onSuccess={() => setIsQuickCaptureOpen(false)}
           onOpenCustomer={(custId) => {

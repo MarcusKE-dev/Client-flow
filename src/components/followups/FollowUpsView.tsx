@@ -18,12 +18,13 @@ import type { FollowUp, Customer } from '../../types';
 import { formatDate, formatTime, getRelativeDateLabel, getWhatsAppUrl } from '../../utils';
 import { useAuth } from '../../context/AuthContext';
 import { StatusBadge } from '../common/StatusBadge';
+import type { ActionTab } from '../common/QuickCaptureModal';
 
 type FollowUpSection = 'overdue' | 'today' | 'tomorrow' | 'this_week' | 'later' | 'completed';
 
 interface FollowUpsViewProps {
   onSelectCustomer: (customerId: string) => void;
-  onOpenQuickCapture: () => void;
+  onOpenQuickCapture: (initialTab?: ActionTab) => void;
 }
 
 export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
@@ -183,7 +184,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
           </div>
 
           <button
-            onClick={onOpenQuickCapture}
+            onClick={() => onOpenQuickCapture('followup')}
             className="bg-[#1D70F5] hover:bg-[#1B2CC1] text-white text-xs font-semibold px-4 py-2.5 rounded transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs self-start sm:self-auto"
           >
             <Plus className="w-4 h-4" />
@@ -297,7 +298,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
               Plan ahead and keep relationships active by scheduling touchpoints.
             </p>
             <button
-              onClick={onOpenQuickCapture}
+              onClick={() => onOpenQuickCapture('followup')}
               className="mt-4 px-3.5 py-1.5 bg-[#1D70F5] text-white text-xs font-semibold rounded cursor-pointer hover:bg-[#1B2CC1]"
             >
               Add Follow-up

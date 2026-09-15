@@ -53,17 +53,20 @@ import { useAuth } from '../../context/AuthContext';
 import { VoiceNoteModal } from '../common/VoiceNoteModal';
 import { MessageTemplateModal } from '../common/MessageTemplateModal';
 import { StatusBadge } from '../common/StatusBadge';
+import type { ActionTab } from '../common/QuickCaptureModal';
 
 interface CustomerProfileViewProps {
   customerId: string;
   onBack: () => void;
   onRefreshData?: () => void;
+  onOpenQuickCapture?: (initialTab?: ActionTab) => void;
 }
 
 export const CustomerProfileView: React.FC<CustomerProfileViewProps> = ({
   customerId,
   onBack,
-  onRefreshData
+  onRefreshData,
+  onOpenQuickCapture
 }) => {
   const { user } = useAuth();
   const [customer, setCustomer] = useState<Customer | null>(null);
@@ -439,7 +442,13 @@ export const CustomerProfileView: React.FC<CustomerProfileViewProps> = ({
 
             {/* Log Interaction */}
             <button
-              onClick={() => setShowAddInteraction(!showAddInteraction)}
+              onClick={() => {
+                if (onOpenQuickCapture) {
+                  onOpenQuickCapture('interaction');
+                } else {
+                  setShowAddInteraction(!showAddInteraction);
+                }
+              }}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#1D70F5] hover:bg-[#1B2CC1] text-white text-xs font-semibold rounded transition-colors cursor-pointer ml-auto"
             >
               <Plus className="w-3.5 h-3.5" />

@@ -19,12 +19,13 @@ import { formatDate, formatTime, generateIcsFile, downloadFile, getMapUrl } from
 import { MeetingBriefModal } from '../meeting/MeetingBriefModal';
 import { PostMeetingModal } from '../meeting/PostMeetingModal';
 import { StatusBadge } from '../common/StatusBadge';
+import type { ActionTab } from '../common/QuickCaptureModal';
 
 type CalendarViewMode = 'day' | 'week' | 'month';
 
 interface CalendarViewProps {
   onSelectCustomer: (customerId: string) => void;
-  onOpenQuickCapture: () => void;
+  onOpenQuickCapture: (initialTab?: ActionTab) => void;
 }
 
 export const CalendarView: React.FC<CalendarViewProps> = ({
@@ -163,7 +164,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
           <div className="flex items-center gap-2">
             <button
-              onClick={onOpenQuickCapture}
+              onClick={() => onOpenQuickCapture('meeting')}
               className="bg-[#1D70F5] hover:bg-[#1B2CC1] text-white text-xs font-semibold px-3.5 py-2 rounded transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Plus className="w-4 h-4" />

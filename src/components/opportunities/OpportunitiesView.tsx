@@ -15,10 +15,11 @@ import { db, queueMutation, generateId } from '../../db';
 import type { Opportunity, Customer, OpportunityStage } from '../../types';
 import { formatDate, formatCurrency } from '../../utils';
 import { useAuth } from '../../context/AuthContext';
+import type { ActionTab } from '../common/QuickCaptureModal';
 
 interface OpportunitiesViewProps {
   onSelectCustomer: (customerId: string) => void;
-  onOpenQuickCapture: () => void;
+  onOpenQuickCapture: (initialTab?: ActionTab) => void;
 }
 
 const STAGES: { id: OpportunityStage; label: string; color: string }[] = [
@@ -119,7 +120,7 @@ export const OpportunitiesView: React.FC<OpportunitiesViewProps> = ({
             </div>
 
             <button
-              onClick={onOpenQuickCapture}
+              onClick={() => onOpenQuickCapture('opportunity')}
               className="bg-[#1D70F5] hover:bg-[#1B2CC1] text-white text-xs font-semibold px-3.5 py-2 rounded transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Plus className="w-4 h-4" />

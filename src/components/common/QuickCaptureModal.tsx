@@ -16,7 +16,7 @@ import { db, queueMutation, generateId } from '../../db';
 import type { Customer, Appointment, FollowUp, Interaction, Opportunity } from '../../types';
 import { useAuth } from '../../context/AuthContext';
 
-type ActionTab = 'customer' | 'meeting' | 'followup' | 'interaction' | 'opportunity';
+export type ActionTab = 'customer' | 'meeting' | 'followup' | 'interaction' | 'opportunity';
 
 interface QuickCaptureModalProps {
   initialTab?: ActionTab;

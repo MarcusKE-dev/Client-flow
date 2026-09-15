@@ -44,13 +44,15 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           onChange={onChange}
           disabled={disabled}
           className={`appearance-none w-full bg-white dark:bg-[#1E293B] text-[#111827] dark:text-[#F8FAFC] border border-[#1D70F5] hover:border-[#1557BF] focus:border-[#1D70F5] focus:ring-2 focus:ring-[#1D70F5]/25 text-xs font-semibold pl-3 pr-8 py-2 rounded-md transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${selectClassName}`.trim()}
+          style={{ colorScheme: 'light dark' }}
           {...rest}
         >
           {normalizedOptions.map((opt) => (
-            <option 
-              key={String(opt.value)} 
+            <option
+              key={String(opt.value)}
               value={opt.value}
               className="bg-white dark:bg-[#1E293B] text-[#111827] dark:text-[#F8FAFC] py-1"
+              style={{ backgroundColor: '#ffffff', color: '#111827' }}
             >
               {opt.label}
             </option>

@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { db, queueMutation } from '../../db';
 import type { Customer, Appointment, FollowUp, Interaction, ImportantDate } from '../../types';
+import type { ActionTab } from '../common/QuickCaptureModal';
 import { formatDate, formatTime, getWhatsAppUrl, getRelativeDateLabel, calculateAttentionStatus } from '../../utils';
 import { MeetingBriefModal } from '../meeting/MeetingBriefModal';
 import { PostMeetingModal } from '../meeting/PostMeetingModal';
@@ -29,7 +30,7 @@ import { StatusBadge } from '../common/StatusBadge';
 
 interface TodayViewProps {
   onSelectCustomer: (customerId: string) => void;
-  onOpenQuickCapture: () => void;
+  onOpenQuickCapture: (initialTab?: ActionTab) => void;
   onOpenCalendar: () => void;
   onOpenFollowUps: () => void;
 }
@@ -399,7 +400,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
               <CalendarCheck className="w-8 h-8 text-[#9CA3AF] mx-auto mb-2" />
               <p className="text-sm font-medium text-[#111827]">Your calendar is clear for today.</p>
               <button
-                onClick={onOpenQuickCapture}
+                onClick={() => onOpenQuickCapture('meeting')}
                 className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1D70F5] hover:bg-[#1B2CC1] text-white text-xs font-medium rounded transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
@@ -529,7 +530,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
             <div className="p-6 text-center">
               <p className="text-sm font-medium text-[#111827]">You're caught up on today's follow-ups.</p>
               <button
-                onClick={onOpenQuickCapture}
+                onClick={() => onOpenQuickCapture('followup')}
                 className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#E5E7EB] hover:bg-[#F3F4F6] text-[#111827] text-xs font-medium rounded transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5 text-[#1D70F5]" />

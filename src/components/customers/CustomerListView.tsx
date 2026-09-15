@@ -24,10 +24,11 @@ import type { Customer, CustomerStatus, CustomerPriority, FollowUp } from '../..
 import { formatDate, getRelativeDateLabel, getWhatsAppUrl, calculateAttentionStatus } from '../../utils';
 import { StatusBadge } from '../common/StatusBadge';
 import { CustomSelect } from '../common/CustomSelect';
+import type { ActionTab } from '../common/QuickCaptureModal';
 
 interface CustomerListViewProps {
   onSelectCustomer: (customerId: string) => void;
-  onOpenQuickCapture: () => void;
+  onOpenQuickCapture: (initialTab?: ActionTab) => void;
 }
 
 export const CustomerListView: React.FC<CustomerListViewProps> = ({
@@ -187,7 +188,7 @@ export const CustomerListView: React.FC<CustomerListViewProps> = ({
 
             {/* Add Customer Button */}
             <button
-              onClick={onOpenQuickCapture}
+              onClick={() => onOpenQuickCapture('customer')}
               className="bg-[#1D70F5] hover:bg-[#1B2CC1] text-white text-xs font-semibold px-4 py-2 rounded transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Plus className="w-4 h-4" />
